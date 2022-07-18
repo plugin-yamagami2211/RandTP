@@ -1,0 +1,12 @@
+name: RandTP
+version: '${project.version}'
+main: jp.yama2211.randtp.Main
+
+commands:
+  randtp:
+    description: RandomTP Command
+
+permissions:
+  randtp.use:
+    description: RandTP Command Pex
+    default: true

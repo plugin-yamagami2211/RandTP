@@ -5,8 +5,19 @@ main: jp.yama2211.randtp.Main
 commands:
   randtp:
     description: RandomTP Command
+  randset:
+    description: RandTP Set Conf Command
 
 permissions:
   randtp.use:
     description: RandTP Command Pex
     default: true
+  randtp.admin:
+    description: RandTP Set Conf Command Pex
+    default: op
+  randtp.*:
+    description: RandTP Pex All
+    default: op
+    children:
+      randtp.use: true
+      randtp.admin: true

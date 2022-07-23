@@ -23,35 +23,38 @@ public class randTP implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "ゲーム内から実行してください。");
             return true;
         }
-        if(sender.hasPermission("randtp.use")){
-            Player player = (Player)sender;
+        if(args.length == 0){
+            if(sender.hasPermission("randtp.use")){
+                Player player = (Player)sender;
+                int Conf = plugin.getConfig().getInt("Int");
 
-            Random rand = new Random();
-            int x = rand.nextInt(40000) -20000;
-            int y = 200;
-            int z = rand.nextInt(40000) -20000;
+                Random rand = new Random();
+                int x = rand.nextInt(Conf * 2) - Conf;
+                int y = 200;
+                int z = rand.nextInt(Conf * 2) - Conf;
 
-            sender.sendMessage("x: " + x + " z: " + z);
-            try{
-                World w = player.getWorld();
+                try{
+                    World w = player.getWorld();
 
-                Location loc = new Location(w,x,y,z);
-                loc.setPitch(player.getLocation().getPitch());
-                loc.setYaw(player.getLocation().getYaw());
+                    Location loc = new Location(w,x,y,z);
+                    loc.setPitch(player.getLocation().getPitch());
+                    loc.setYaw(player.getLocation().getYaw());
 
-                player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,200,100));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,200,100));
 
-                player.teleport(loc);
-                player.sendMessage("x: " + x + " y: " + y + " z: "+ z + " にTPしました。");
-            }catch (Exception e){
-                player.sendMessage(ChatColor.RED + "TPに失敗しました。");
+                    player.teleport(loc);
+                    player.sendMessage("x: " + x + " y: " + y + " z: "+ z + " にTPしました。");
+                }catch (Exception e){
+                    player.sendMessage(ChatColor.RED + "TPに失敗しました。");
+                }
+
+                return true;
+
+            } else {
+                sender.sendMessage(ChatColor.RED + "権限がありません。");
+                return true;
             }
-
-            return true;
-
-        } else {
-            sender.sendMessage(ChatColor.RED + "権限がありません。");
-            return true;
-        }
+        } //args.length 0
+        return true;
     }
 }

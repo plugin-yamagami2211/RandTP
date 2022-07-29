@@ -1,6 +1,7 @@
 package jp.yama2211.randtp.cmd;
 
 import jp.yama2211.randtp.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -55,6 +56,41 @@ public class randTP implements CommandExecutor {
                 return true;
             }
         } //args.length 0
+
+        if(args.length == 1){
+            if(sender.hasPermission("randtp.use")){
+                Player player = (Player)sender;
+                Player TargetPlayer = Bukkit.getPlayer(args[0]);
+                int Conf = plugin.getConfig().getInt("Int");
+
+                Random rand = new Random();
+                int x = rand.nextInt(Conf * 2) - Conf;
+                int y = 200;
+                int z = rand.nextInt(Conf * 2) - Conf;
+
+                try{
+                    World w = TargetPlayer.getWorld();
+
+                    Location loc = new Location(w,x,y,z);
+                    loc.setPitch(TargetPlayer.getLocation().getPitch());
+                    loc.setYaw(TargetPlayer.getLocation().getYaw());
+
+                    TargetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,200,100));
+
+                    TargetPlayer.teleport(loc);
+                    TargetPlayer.sendMessage("x: " + x + " y: " + y + " z: "+ z + " にTPしました。");
+                    player.sendMessage(TargetPlayer.getName() + "が x: " + x + " y: " + y + " z: "+ z + " にTPしました。");
+                }catch (Exception e){
+                    player.sendMessage(ChatColor.RED + "TPに失敗しました。");
+                }
+
+                return true;
+
+            } else {
+                sender.sendMessage(ChatColor.RED + "権限がありません。");
+                return true;
+            }
+        } //args.length 1
         return true;
     }
 }

@@ -11,6 +11,12 @@ Configの値が初期値の場合、-200 ～ 200 までを生成します。
 * 落下ダメージ無効化のため、10秒間 耐性 が付与されます。
 * 恐らく生成されていない場所にテレポートするため、**サーバに甚大な負荷を与える可能性**があります。
 
+# コマンドと権限
+/randtp [playername] : ランダムな座標にTPします。[playername]で指定したプレイヤーをTPします。 : randtp.use (誰でも使える)  
+/randset <Int> : <Int>をConfigに保存します。 : randtp.admin  
+/randset : 現在のConfigの値を表示します。 : randtp.admin  
+randtp.* : すべての権限
+
 # ToDo
 * ~~乱数生成の範囲をconfig参照するように。~~
     * ~~コマンドでconfigに保存できるようにしたい。~~

@@ -7,11 +7,16 @@ commands:
     description: RandomTP Command
   randset:
     description: RandTP Set Conf Command
+  randtpall:
+    description: RantTP All Command
 
 permissions:
   randtp.use:
     description: RandTP Command Pex
     default: true
+  randtp.alltp:
+    description: RandTP All TP Pex
+    default: op
   randtp.admin:
     description: RandTP Set Conf Command Pex
     default: op

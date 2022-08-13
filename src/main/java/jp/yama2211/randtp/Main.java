@@ -1,5 +1,6 @@
 package jp.yama2211.randtp;
 
+import jp.yama2211.randtp.cmd.randAll;
 import jp.yama2211.randtp.cmd.randSet;
 import jp.yama2211.randtp.cmd.randTP;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +21,7 @@ public final class Main extends JavaPlugin {
 
     private void loadCMD(){
         getCommand("randtp").setExecutor(new randTP(this));
+        getCommand("randtpall").setExecutor(new randAll(this));
         getCommand("randset").setExecutor(new randSet(this));
     }
 }
